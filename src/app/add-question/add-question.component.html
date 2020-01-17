@@ -1,0 +1,66 @@
+<mat-toolbar color="">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>Flashcards</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/home'"> Home </a>
+      <a mat-button [routerLink]="'/add-question'"> Add Question </a>
+      <a mat-button [routerLink]="'/question-bank'"> Question Bank </a>
+      <a mat-button [routerLink]="'/study-mode'"> Practice </a>
+      <span>
+        <a mat-button > Logout </a>
+      </span>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+      <span style="font-size: 12px;">Flashcards helps you easily practice your skills</span>
+  </mat-toolbar-row>
+    
+</mat-toolbar>
+<div class="container">
+  <h1>Add a question</h1>
+  <form novalidate [formGroup]="questionForm" (ngSubmit)="save(flashcard)">
+    <div class="form-group">
+      <div class="form-group row">
+        <div class="alert alert-warning" *ngIf="questionForm.controls.category.errors && (questionForm.controls.category?.errors.required && questionForm.controls.category?.touched)">
+          <p>This field is required.</p>
+        </div>
+        <label for="category">Category:</label>
+        <select formControlName="category" [(ngModel)]="flashcard.category" class="custom-select" name="category">
+          <option selected>Choose a category</option>
+          <option *ngFor="let cat of categories">{{cat}}</option>
+        </select>
+      </div>
+      <!------>
+      <div *ngIf="isNewCategorySelected()">
+          <div class="form-group row">
+            <div class="alert alert-warning" *ngIf="questionForm.controls.newCategory.errors && (questionForm.controls.newCategory?.errors.required && questionForm.controls.newCategory?.touched)">
+              <p>This field is required.</p>
+            </div>
+            <label for="newCategory">New Category</label>
+            <input formControlName="newCategory" name="newCategory" [(ngModel)]="newCategory" type="text" class="form-control" placeholder="Which New Category You Are Adding?">
+          </div>
+      </div>
+      <!------>
+      <div class="form-group row">
+        <div class="alert alert-warning" *ngIf="questionForm.controls.question.errors && (questionForm.controls.question?.errors.required && questionForm.controls.question?.touched)">
+          <p>This field is required.</p>
+        </div>
+        <label for="question">Question:</label>
+        <input formControlName="question" name="question" [(ngModel)]="flashcard.question" type="text" class="form-control" placeholder="What is your Question?">
+      </div>
+      <div class="form-group row">
+        <div class="alert alert-warning" *ngIf="questionForm.controls.answer.errors && (questionForm.controls.answer?.errors.required && questionForm.controls.answer?.touched)">
+          <p>This field is required.</p>
+        </div>
+        <label for="answer">Answer:</label>
+        <input formControlName="answer" name="answer" [(ngModel)]="flashcard.answer" type="text" class="form-control" placeholder="The Answer">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="save(flashcard)" [disabled]="this.questionForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>

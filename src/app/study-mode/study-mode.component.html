@@ -1,0 +1,48 @@
+<mat-toolbar color="">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>Flashcards</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/home'"> Home </a>
+      <a mat-button [routerLink]="'/add-question'"> Add Question </a>
+      <a mat-button [routerLink]="'/question-bank'"> Question Bank </a>
+      <a mat-button [routerLink]="'/study-mode'"> Practice </a>
+      <span>
+        <a mat-button > Logout </a>
+      </span>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+      <span style="font-size: 12px;">Flashcards helps you easily practice your skills</span>
+    </mat-toolbar-row>
+    
+</mat-toolbar>
+<div class="container">
+  <div *ngIf="!studying">
+    <h2>Select Categories</h2>
+    <div class="form-group">
+      <div *ngFor="let cat of categories" class="checkbox">
+        <label>
+          <input type="checkbox" value="" (change)="updateList($event, cat)"> {{cat}}</label>
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="study(cats)">Study</button>
+  </div>
+
+  <div *ngIf="studying">
+    <div *ngIf="question">
+      <h3>{{fc.question}}</h3>
+      <label>Answer</label>
+      <input type="text">
+      <button class="btn btn-primary" (click)="next()">Submit</button>
+    </div>
+    <div *ngIf="!question">
+      <h3>{{fc.answer}}</h3>
+      <button class="btn btn-primary" (click)="next()">Submit</button>
+    </div>
+  </div>
+</div>

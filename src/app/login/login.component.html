@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V6</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ===============================================================================================	
+	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> -->
+<!--===============================================================================================-->
+<!-- <link rel="stylesheet" type="text/css" href="/src/app/login/vendor/bootstrap/css/bootstrap.min.css">	 -->
+<!-- <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"> -->
+<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="/src/app/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css"> --> -->
+<!--===============================================================================================-->
+   <!-- <link rel="stylesheet" type="text/css" href="/src/app/login/fonts/iconic/css/material-design-iconic-font.min.css"> --> -->
+<!--===============================================================================================-->
+  <!-- <link rel="stylesheet" type="text/css" href="/src/app/login/vendor/animate/animate.css"> --> -->
+<!--===============================================================================================-->	
+	<!-- <link rel="stylesheet" type="text/css" href="/src/app/login/vendor/css-hamburgers/hamburgers.min.css"> --> -->
+<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="/src/app/login/vendor/animsition/css/animsition.min.css"> --> -->
+<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="/src/app/login/vendor/select2/select2.min.css"> --> -->
+<!--===============================================================================================-->	
+	<!-- <link rel="stylesheet" type="text/css" href="/src/app/login/vendor/daterangepicker/daterangepicker.css"> --> -->
+<!--===============================================================================================-->
+	 <!-- <link rel="stylesheet" type="text/css" href="/src/app/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/src/app/login/css/main.css">   -->
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-10 p-b-10">
+				<form class="login100-form validate-form" novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+					<span class="login100-form-title p-b-70">
+						Study With Flashcards   
+					</span>
+					<span class="login100-form-avatar">
+						<img src="https://secure.gravatar.com/avatar/9ccf3eefcce317d3beb86b77e2acc5d5?s=238" alt="AVATAR">
+					</span>
+                    <div class="alert alert-warning"
+                        *ngIf="loginForm.controls.email.errors && loginForm.controls.email?.touched">
+                            An email is required and must be a valid email address
+                    </div>
+					<!-- <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username"></span>
+					</div> -->
+                    <div class="wrap-input100 validate-input m-t-20 m-b-20">
+                        <label for="inputEmail3" class="txt3">Email</label>
+                        <input [(ngModel)]="this.formData.email" type="email" class="form-control" id="inputEmail3" formControlName="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="alert alert-warning"
+                        *ngIf="loginForm.controls.password.errors && loginForm.controls.password?.touched">
+                            A password is required and must be at least 8 characters
+                    </div>
+
+					<div class="wrap-input100 validate-input m-b-50">
+                        <label for="inputPassword3" class="txt3">Password</label>
+                          <input [(ngModel)]="this.formData.password" type="password" class="form-control" id="inputPassword3" formControlName="password" placeholder="Password" required>
+					</div>
+
+					<!-- <div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div> -->
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn" [disabled]="this.loginForm.invalid">Sign in</button>
+                    </div>
+
+					<ul class="login-more p-t-30">
+						<li class="m-b-1">
+							<span class="txt1">
+								Forgot
+							</span>
+
+							<a href="#" class="txt2">
+								Username / Password?
+							</a>
+						</li>
+
+						<li>
+							<span class="txt1">
+								Don’t have an account?
+							</span>
+								<a routerLink="/register" class="txt2">Register</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	
+
+</body>
+</html>
